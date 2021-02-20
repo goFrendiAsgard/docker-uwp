@@ -9,7 +9,7 @@ services:
       ports:
       - "8080:80"  # <-- port 8080 pada host (localhost) akan di bind ke port 80 pada container
       volumes:
-      - ./html:/var/www/html # <-- folder ./html di host akan di bind ke folder /var/www/html di container
+      - ./html:/var/www/html # <-- folder (volume) ./html di host akan di bind ke folder /var/www/html di container
 
   mariadbku:
       image: mariadb
