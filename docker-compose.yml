@@ -1,0 +1,20 @@
+services:
+
+  wordpressku:
+      image: wordpress
+      links:
+      - mariadbku:mysql
+      environment:
+      - WORDPRESS_DB_PASSWORD=password
+      ports:
+      - "8080:80"  # <-- port 8080 pada host (localhost) akan di bind ke port 80 pada container
+      volumes:
+      - ./html:/var/www/html # <-- folder ./html di host akan di bind ke folder /var/www/html di container
+
+  mariadbku:
+      image: mariadb
+      environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=wordpress
+      volumes:
+      - ./database:/var/lib/mysql
