@@ -5,7 +5,7 @@ Percobaan memakai docker compose
 # Cara menjalankan
 
 * Install [docker-desktop](https://www.docker.com/products/docker-desktop)
-* Jalankan `docker-compose up`. Nanti akan terbentuk folder `database` dan `html`
+* Jalankan `docker-compose up --build`. Nanti akan terbentuk folder `database` dan `html`
 
 ![docker-compose](docker-compose.png)
 

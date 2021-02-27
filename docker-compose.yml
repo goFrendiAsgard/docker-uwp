@@ -1,22 +1,29 @@
 services:
 
+  appku:
+    build: web # service appku akan memanfaatkan Dockerfile yang ada di folder "web"
+    links:
+    - mariadbku:mysql
+    ports:
+    - "8081:3000"
+
   wordpressku:
-      image: wordpress
-      links:
-      - mariadbku:mysql
-      environment:
-      - WORDPRESS_DB_PASSWORD=password
-      ports:
-      - "8080:80"  # <-- port 8080 pada host (localhost) akan di bind ke port 80 pada container
-      volumes:
-      - ./html:/var/www/html # <-- folder (volume) ./html di host akan di bind ke folder /var/www/html di container
+    image: wordpress # service wordpressku akan memanfaatkan image "wordpress" yang ada di dockerhub
+    links:
+    - mariadbku:mysql
+    environment:
+    - WORDPRESS_DB_PASSWORD=password
+    ports:
+    - "8080:80"  # <-- port 8080 pada host (localhost) akan di bind ke port 80 pada container
+    volumes:
+    - ./html:/var/www/html # <-- folder (volume) ./html di host akan di bind ke folder /var/www/html di container
 
   mariadbku:
-      image: mariadb
-      environment:
-      - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=wordpress
-      ports:
-      - "3307:3306"
-      volumes:
-      - ./database:/var/lib/mysql
+    image: mariadb # service mariadbku akan memanfaatkan image "mariadb" yang ada di dockerhub
+    environment:
+    - MYSQL_ROOT_PASSWORD=password
+    - MYSQL_DATABASE=wordpress
+    ports:
+    - "3307:3306"
+    volumes:
+    - ./database:/var/lib/mysql
